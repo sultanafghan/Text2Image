@@ -10,4 +10,7 @@ technolgy that are use to made this :<br />
 **Google fonts API**<br />
 **Google Icons**<br />
 **Pexels api**<br />
+
+**demo** ==>>https://sultanafghan.github.io/Text2Image/index.html <br/>
+
 ![Text-2-Image](https://user-images.githubusercontent.com/46255405/161388607-7e4ff6fd-57fa-4459-9f10-c4b3f52f2b1a.jpg)
