@@ -6,7 +6,7 @@ technolgy that are use to made this :<br />
 **Pure JavaScript**<br />
 **Ajax**<br />
 **Bootstrap**<br />
-**Bruzu.com API**<br />
+**Bruzu.com API** https://docs.bruzu.com/getting-started/using-the-api/<br /> 
 **Google fonts API**<br />
 **Google Icons**<br />
 **Pexels api**<br />
