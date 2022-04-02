@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Fonts</title>
+</head>
+
+<body>
+
+
+    <p>Fonts</p>
+    <select id="fonts"></select>
+
+    <button id="getFont">Get Single FOnt</button>
+    <p id="upper">A B C D E F G H I J K L MN O P Q R S T U V W X Y Z</p>
+    <p id="lower">a b c d e f g h i j k l m n o p q rs t u v w x y z</p>
+    <script>
+
+        var getfonts = document.getElementById("getfonts");
+        var fonts = document.getElementById("fonts");
+
+        loadFonts();
+        function loadFonts() {
+            xhr = new XMLHttpRequest();
+
+            var url = "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDQnwvxmAz3XXx24euRQifW-vi_-MEBX6Y";
+
+            var output = '';
+
+
+            xhr.open("GET", url, true);
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    console.log(JSON.parse(this.responseText));
+                    var fontDatas = JSON.parse(this.responseText);
+                    fontDatas.items.forEach(font => {
+                        output += '<option class="fonts" value="' + font.family + '">' + font.family + '</option>';
+                    });
+                    fonts.innerHTML = output;
+
+                }
+            }
+            xhr.send();
+        }
+    </script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+        document.getElementById("getFont").addEventListener("click", function () {
+            WebFont.load({
+                google: {
+                    families: [document.getElementById("fonts").value]
+                }
+            });
+        })
+
+        // 
+        var eSelect = document.getElementById("fonts");
+
+        eSelect.onchange = function () {
+            if (eSelect.selectedIndex === 2) {
+                console.log("select");
+            } else {
+                WebFont.load({
+                    google: {
+                        families: [eSelect.value]
+                    }
+                });
+                document.getElementById("lower").style.fontFamily = eSelect.value;
+                document.getElementById("upper").style.fontFamily = eSelect.value;
+
+
+                document.getElementsByClassName("fonts")[0].style.fontFamily = "Akronim";
+
+                console.log(eSelect.value);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

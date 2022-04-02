@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+
+    <button id="get">Get Images</button>
+    <input type="text" id="searchKey" placeholder="Search Key">
+    <div id="result">
+
+    </div>
+
+
+
+
+    <script>
+        document.getElementById('get').addEventListener('click', loadImages);
+
+        var searchKey = document.getElementById("searchKey");
+
+        function loadImages() {
+
+            console.log(searchKey.value);
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', 'https://api.pexels.com/v1/search?query=' + searchKey.value , true);
+            // xhr.setRequestHeader('Authorization', '563492ad6f91700001000001c19afbc7abc74697a90368af75b1abb1');
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    //console.log(xhr.responseText);
+                    var data = JSON.parse(xhr.responseText);
+                    var newData = data.photos;
+                    var output = '';
+
+                    newData.forEach(photo => {
+                        console.log(photo.url);
+                        output += '<img src=' + photo.src.small + ' width="200"/>';
+
+                    });
+
+                    document.getElementById('result').innerHTML = output;
+
+                }
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>
